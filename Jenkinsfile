@@ -1,25 +1,20 @@
 pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building the React project...'
-                bat '''
-                    npm install
-                    npm run build
-                '''
-            }
-        }
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        echo 'Building the project...'
+        sh 'npm install'
+        sh 'npm audit'
+      }
     }
-    post {
-        always {
-            echo 'Build stage completed.'
-        }
-        failure {
-            echo 'Build failed.'
-        }
-        success {
-            echo 'Build succeeded!'
-        }
+  }
+  post {
+    success {
+      echo 'Build succeeded!'
     }
+    failure {
+      echo 'Build failed!'
+    }
+  }
 }
