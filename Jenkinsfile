@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the React project...'
-                bat '''
+                sh '''
                     npm install
                     npm run build
                 '''
