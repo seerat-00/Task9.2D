@@ -1,23 +1,34 @@
 pipeline {
     agent any
     tools {
-        nodejs 'nodejs'  // Ensure this matches the NodeJS installation name in Jenkins
+        nodejs 'nodejs'  
     }
     stages {
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
         stage('Build') {
             steps {
-                sh 'npm run build'
+                echo 'Building the React project...'
+                bat '''
+                    npm install
+                    npm run build
+                '''
             }
         }
         stage('Test') {
             steps {
-                bat 'npm test -- --watchAll=false --passWithNoTests'
+                echo 'Running tests...'
+                bat 'npm test'
             }
+        }
+    }
+    post {
+        always {
+            echo 'Build and Test stages completed.'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+        success {
+            echo 'Pipeline succeeded!'
         }
     }
 }
