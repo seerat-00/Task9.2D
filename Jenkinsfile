@@ -8,19 +8,24 @@ pipeline {
                     npm install
                     npm run build
                 '''
-                //archiveArtifacts artifacts: 'build/**', fingerprint: true
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                bat 'npm test'
             }
         }
     }
     post {
         always {
-            echo 'Build stage completed.'
+            echo 'Build and Test stages completed.'
         }
         failure {
-            echo 'Build failed.'
+            echo 'Pipeline failed.'
         }
         success {
-            echo 'Build succeeded!'
+            echo 'Pipeline succeeded!'
         }
     }
 }
