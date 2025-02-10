@@ -30,13 +30,13 @@ pipeline {
     }
     post {
         always {
-            echo 'Build and Test and analysis stages completed.'
+            echo 'Build, Test, and SonarQube Analysis stages completed.'
         }
         failure {
             echo 'Pipeline failed.'
         }
         success {
             echo 'Pipeline succeeded!'
-        }
-    }
+        }
+    }
 }
