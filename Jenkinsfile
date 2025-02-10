@@ -8,7 +8,7 @@ pipeline {
                     npm install
                     npm run build
                 '''
-                archiveArtifacts artifacts: 'build/**', fingerprint: true
+                //archiveArtifacts artifacts: 'build/**', fingerprint: true
             }
         }
     }
