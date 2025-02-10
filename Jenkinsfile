@@ -1,24 +1,12 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'nodejs'  // Ensure NodeJS is installed
-    }
     environment {
         SONARQUBE_SERVER = 'http://localhost:9000'  // Replace with your SonarQube server URL
     }
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/seerat-00/Task9.2D.git'
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                bat 'npm install'
-            }
-        }
         stage('Build') {
             steps {
+                bat 'npm install'
                 bat 'npm run build'
             }
         }
