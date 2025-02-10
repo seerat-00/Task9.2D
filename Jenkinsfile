@@ -7,6 +7,8 @@ pipeline {
         stage('Build') {
             steps {
                 bat 'npm install'
+                // Add a step to install crypto-browserify if needed
+                bat 'npm install crypto-browserify'
                 bat 'npm run build'
             }
         }
